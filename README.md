@@ -9,6 +9,10 @@ emotion이랑 styled-components를 비교할것이고, styled와 css props도 �
 
 ## styled component vs emotion
 
+### 환경
+
+emotion의 css props를 사용하기 위해서는 jsx fragma 설정이 필요한데 babel이나, tsc를 사용하고 있다면 jsx 옵션을 변경해 적용해줄 수 있음.
+
 ### 데브 모드에서의 style
 
 둘다 dev모드에서는 head 태그에 스타일시트를 넣는다. 생긴게 살짝 다름. emotion은 데브모드에서 해쉬한 클래스 이름에 적용한 스타일 요소 혹은 styled컴포넌트의 이름과 소스맵(이거 어따 써먹는걸까)까지 제공하는데, styled component는 그런거 없고 그냥 해쉬한 클래스값만 뱉는다.
@@ -19,8 +23,7 @@ prod 모드에서는 CSSOM을 직접 건드리는 방식으로 동작한다고 �
 
 그리고 emotion은 동적 스타일을 새롭게 처리할때마다 style 태그를 계속 추가하고 없애지 않는다. styled-components는 하나의 style 태그에 때려박는다. 
 
-### 동적 요소 스타일링
-
+### 동적 요소 스타일링과 부하
 #### css props vs styled
 
 - emotion이나 styled-components를 쓰나 인터페이스는 그냥 동일하다. 컴포넌트 만들어줘야 되고, prop필요할 경우 타입선언도 해줘야함
@@ -51,7 +54,19 @@ styled류는 compile code가 1~2번밖에 일어나지 않았다. 뭔가 styled�
 styled component - 4ms정도
 ![헤드스타일](image/styled-component.png)
 
+ https://github.com/jsjoeio/styled-components-vs-emotion 
+
 인터페이스가 살짝 아쉽긴 하지만, styled 써야겠다! 
+
+### 번들 크기
+
+(번들/지집)
+
+emotion/styled는 10.9/4.8, emotion/react는 20.8/7.7,  styled components는 다해서 33.4/12.7. 또이또이 한듯??? 만약 emotion react를 안쓰고 전역 스타일은 걍 CSS-loader, style-loader를 활용하거나, html단에서 붙일 수 있다면, styled만 사용하게 될테니 굳이 적게 쓰려고 한다면 emotion이 좀더 유리한듯. 근데 theming하거나 emotion단에서 전역 style을 주고싶다면, 결국 emotion/react가 필요할듯 싶은디 아니면 critical css나..
+
+성능 자체는 거의 따라 잡혔다고함
+
+물론 SWC를 사용하는 Next라면 현재 Styled Component쓰는게 나을지도
 
 ## global style
 
